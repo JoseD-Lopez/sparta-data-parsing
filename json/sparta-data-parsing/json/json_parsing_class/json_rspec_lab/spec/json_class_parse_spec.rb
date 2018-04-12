@@ -1,14 +1,13 @@
 require 'spec_helper'
-require 'httparty'
 
 describe 'Testing the exchange rates' do
 
     before(:all) do
-      @exchange_rates = ParseJson.new(HTTParty::get('http://api.fixer.io/latest').body)
+      @exchange_rates = ParseJson.new('json_exchange_rates.json')
     end
 
     it 'Should be a Hash' do
-      expect(@exchange_rates.json_file).to be_kind_of(Hash)
+      expect(@exchange_rates.json_file).to be_a Hash
     end
 
     it 'should contain the base as EUR' do
@@ -22,8 +21,8 @@ describe 'Testing the exchange rates' do
     end
 
 
-    it "should countain 32 rates" do
-      expect(@exchange_rates.number_of_rate_keys).to eq 32
+    it "should countain 31 rates" do
+      expect(@exchange_rates.number_of_rate_keys).to eq 31
 
       # @key_num = 0
       # @value_num = 0
